@@ -49,16 +49,21 @@ GoogleSheets.authorizeApiKey(process.env.GOOGLE_API_KEY)
             })
             .reduce((prevVal, elem) => {
               let newObject = prevVal.ObjectNumber ? prevVal : elem;
-              if (!newObject.HighRes) {
-                newObject.HighRes = [];
+              if (elem.PrimaryOrSecondaryImage == "Primary") {
+                newObject.PrimaryHighRes = elem.ImageHighRes;
+                newObject.PrimaryLowRes = elem.ImageLowRes;
+              } else {
+                if (!newObject.HighRes) {
+                  newObject.HighRes = [];
+                }
+                newObject.HighRes.push(elem.ImageHighRes);
+                delete newObject.ImageHighRes;
+                if (!newObject.LowRes) {
+                  newObject.LowRes = [];
+                }
+                newObject.LowRes.push(elem.ImageLowRes);
+                delete newObject.ImageLowRes;
               }
-              newObject.HighRes.push(elem.ImageHighRes);
-              delete newObject.ImageHighRes;
-              if (!newObject.LowRes) {
-                newObject.LowRes = [];
-              }
-              newObject.LowRes.push(elem.ImageLowRes);
-              delete newObject.ImageLowRes;
               return newObject;
             }, {});
         }
