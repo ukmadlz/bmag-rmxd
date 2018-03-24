@@ -38,6 +38,15 @@ GoogleSheets.authorizeApiKey(process.env.GOOGLE_API_KEY)
           return data;
         }
       });
+      server.route({
+        method: 'GET',
+        path: '/object/{id}',
+        handler: (request, h) => {
+          return data.filter(item => {
+            return item.ObjectNumber === request.params.id;
+          });
+        }
+      });
       await server.start();
       console.log(`Server running at: ${server.info.uri}`);
     };
