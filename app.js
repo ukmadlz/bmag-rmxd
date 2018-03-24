@@ -2,6 +2,7 @@
 import DotEnv from 'dotenv';
 import NodeSheets from 'node-sheets';
 import Hapi from 'hapi';
+import Async from 'async';
 
 // Load the ENV
 DotEnv.load({
@@ -42,9 +43,24 @@ GoogleSheets.authorizeApiKey(process.env.GOOGLE_API_KEY)
         method: 'GET',
         path: '/object/{id}',
         handler: (request, h) => {
-          return data.filter(item => {
-            return item.ObjectNumber === request.params.id;
-          });
+          return data
+            .filter(item => {
+              return item.ObjectNumber === request.params.id;
+            })
+            .reduce((prevVal, elem) => {
+              let newObject = prevVal.ObjectNumber ? prevVal : elem;
+              if (!newObject.HighRes) {
+                newObject.HighRes = [];
+              }
+              newObject.HighRes.push(elem.ImageHighRes);
+              delete newObject.ImageHighRes;
+              if (!newObject.LowRes) {
+                newObject.LowRes = [];
+              }
+              newObject.LowRes.push(elem.ImageLowRes);
+              delete newObject.ImageLowRes;
+              return newObject;
+            }, {});
         }
       });
       await server.start();
