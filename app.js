@@ -56,16 +56,21 @@ GoogleSheets.authorizeApiKey(process.env.GOOGLE_API_KEY)
                 if (!newObject.HighRes) {
                   newObject.HighRes = [];
                 }
-                newObject.HighRes.push(elem.ImageHighRes);
-                delete newObject.ImageHighRes;
+                if (!newObject.HighRes.includes(elem.ImageHighRes)) {
+                  newObject.HighRes.push(elem.ImageHighRes);
+                  delete newObject.ImageHighRes;
+                }
                 if (!newObject.LowRes) {
                   newObject.LowRes = [];
+                } 
+                if (!newObject.LowRes.includes(elem.ImageLowRes)) {
+                  newObject.LowRes.push(elem.ImageLowRes);
+                  delete newObject.ImageLowRes;
                 }
-                newObject.LowRes.push(elem.ImageLowRes);
-                delete newObject.ImageLowRes;
               }
               return newObject;
-            }, {});
+            }, {}
+          );
         }
       });
       await server.start();
