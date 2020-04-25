@@ -19,7 +19,7 @@
   "homepage": "https://github.com/ukmadlz/bmag-rmxd#readme",
   "dependencies": {
     "algoliasearch": "^3.26.0",
-    "async": "^2.6.0",
+    "async": "^2.6.3",
     "azure-cognitiveservices-vision": "^1.0.0-preview",
     "dotenv": "^5.0.1",
     "hapi": "^17.2.3",
