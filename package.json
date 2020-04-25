@@ -23,7 +23,7 @@
     "azure-cognitiveservices-vision": "^1.0.0-preview",
     "dotenv": "^5.0.1",
     "hapi": "^17.2.3",
-    "ms-rest-azure": "^2.5.5",
+    "ms-rest-azure": "^2.6.0",
     "node-sheets": "^1.0.0",
     "request": "^2.85.0"
   },
