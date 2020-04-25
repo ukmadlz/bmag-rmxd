@@ -22,7 +22,7 @@
     "async": "^2.6.0",
     "azure-cognitiveservices-vision": "^1.0.0-preview",
     "dotenv": "^5.0.1",
-    "hapi": "^17.2.3",
+    "hapi": "^17.8.5",
     "ms-rest-azure": "^2.5.5",
     "node-sheets": "^1.0.0",
     "request": "^2.85.0"
