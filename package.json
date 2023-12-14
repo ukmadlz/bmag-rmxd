@@ -24,7 +24,7 @@
     "dotenv": "^5.0.1",
     "hapi": "^17.2.3",
     "ms-rest-azure": "^2.5.5",
-    "node-sheets": "^1.0.0",
+    "node-sheets": "^1.1.0",
     "request": "^2.85.0"
   },
   "devDependencies": {
